@@ -1,23 +1,30 @@
-# Compiled class file
-*.class
+# Eclipse Metadata
+.metadata
 
-# Log file
+# Eclipse Build Directory
+bin/
+
+# Eclipse Recommenders
+.recommenders/
+
+# Temp files
+tmp/
+*.tmp
+*.swp
+
+# IDE Settings
+.settings/
+.loadpath
+*.iml
+
+# IntelliJ
+.idea/
+/out/
+.idea_modules/
+
+# Target directory
+target/
+
+# Logs
+logs/
 *.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
