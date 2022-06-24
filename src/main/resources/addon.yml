@@ -1,10 +1,6 @@
-# Replace this your addon id. This will be used as a namespace for your custom items, blocks, etc.
 id: example
 name: Example
-# Leaving this as ${project.version} will let the maven resource plugin automatically set the version.
 version: ${project.version}
-# The main class of your addon. This is the class that will be called when the addon is loaded.
 main: com.example.ExampleAddon
-authors: [ "StudioCode", "ByteZ1337", "Javahase" ]
-# The id of the spigot resource. This is used to check for addon updates.
+authors: [ "ExampleAuthor" ]
 spigotResourceId: 12345
