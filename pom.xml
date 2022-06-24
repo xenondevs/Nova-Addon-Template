@@ -9,6 +9,14 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spigot.version>1.19-R0.1-SNAPSHOT</spigot.version>
+        <nova.version>0.9.4</nova.version>
+        <kotlin.version>1.7.0</kotlin.version>
+        <dir>${project.build.directory}</dir>
+    </properties>
+    
     <repositories>
         <repository>
             <id>xenondevs</id>
@@ -22,14 +30,6 @@
             <url>https://repo.xenondevs.xyz/releases</url>
         </pluginRepository>
     </pluginRepositories>
-
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spigot.version>1.19-R0.1-SNAPSHOT</spigot.version>
-        <nova.version>0.9.4</nova.version>
-        <kotlin.version>1.7.0</kotlin.version>
-        <dir>${project.build.directory}</dir>
-    </properties>
 
     <dependencies>
         <dependency>
@@ -169,7 +169,6 @@
                     </execution>
                 </executions>
             </plugin>
-
         </plugins>
 
         <resources>
