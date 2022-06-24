@@ -2,5 +2,6 @@ id: example
 name: Example
 version: ${project.version}
 main: com.example.ExampleAddon
+novaVersion: ${nova.version}
 authors: [ "ExampleAuthor" ]
 spigotResourceId: 12345

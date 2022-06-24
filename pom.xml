@@ -26,17 +26,16 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spigot.version>1.19-R0.1-SNAPSHOT</spigot.version>
-        <dir>${project.build.directory}</dir>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <nova.version>0.9.4</nova.version>
         <kotlin.version>1.7.0</kotlin.version>
+        <dir>${project.build.directory}</dir>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>xyz.xenondevs.nova</groupId>
             <artifactId>Nova</artifactId>
-            <version>0.9.4</version>
+            <version>${nova.version}</version>
         </dependency>
     </dependencies>
 
@@ -120,7 +119,7 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <jvmTarget>1.8</jvmTarget>
+                    <jvmTarget>17</jvmTarget>
                     <args>
                         <arg>-Xjvm-default=all</arg>
                     </args>
