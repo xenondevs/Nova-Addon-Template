@@ -2,10 +2,11 @@ package com.example
 
 import xyz.xenondevs.nova.addon.Addon
 
-class ExampleAddon : Addon() {
+object ExampleAddon : Addon() {
     
     override fun init() {
-        // Called before some things like RecipeType are registered. So this is the only place to register them.
+        // Called when the addon is initialized.
+        // Register NovaMaterials, RecipeTypes, etc. here
     }
     
     override fun onEnable() {
