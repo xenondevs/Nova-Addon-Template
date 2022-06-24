@@ -1,2 +1,2 @@
 # Nova-Addon-Template
-Addon for creating Nova Addons
+Template for creating Nova addons
