@@ -16,4 +16,5 @@ object ExampleAddon : Addon() {
     override fun onDisable() {
         // Called when the addon is disabled.
     }
+    
 }
