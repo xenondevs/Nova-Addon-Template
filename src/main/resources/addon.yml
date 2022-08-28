@@ -1,7 +1,0 @@
-id: example
-name: Example
-version: "${project.version}"
-main: com.example.ExampleAddon
-novaVersion: "${nova.version}"
-author: ExampleAuthor
-spigotResourceId: 12345

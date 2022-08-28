@@ -25,6 +25,10 @@ tmp/
 # Target directory
 target/
 
+# Gradle
+.gradle/
+build/
+
 # Logs
 logs/
 *.log
