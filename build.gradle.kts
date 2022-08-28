@@ -1,7 +1,7 @@
 import org.gradle.configurationcache.extensions.capitalized
 
 group = "com.example" // TODO: Change this to your group
-version = "0.2" // TODO: Change this to your addon version
+version = "1.0-SNAPSHOT" // TODO: Change this to your addon version
 
 val mojangMapped = System.getProperty("mojang-mapped") != null
 
