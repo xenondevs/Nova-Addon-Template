@@ -55,7 +55,7 @@ tasks {
         group = "build"
         dependsOn("addon", if (mojangMapped) "jar" else "remapObfToSpigot")
         
-        from(File(File(project.buildDir, "libs"), "${project.name}-${project.version}.jar"))
+        from(File(File(project.buildDir, "libs"), "${project.name.capitalized()}-${project.version}.jar"))
         into(System.getProperty("outDir")?.let(::File) ?: project.buildDir)
     }
     withType<KotlinCompile> {
