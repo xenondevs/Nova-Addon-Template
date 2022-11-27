@@ -1,4 +1,5 @@
 import org.gradle.configurationcache.extensions.capitalized
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 group = "com.example" // TODO: Change this to your group
 version = "1.0-SNAPSHOT" // TODO: Change this to your addon version
@@ -56,5 +57,10 @@ tasks {
         
         from(File(File(project.buildDir, "libs"), "${project.name}-${project.version}.jar"))
         into(System.getProperty("outDir")?.let(::File) ?: project.buildDir)
+    }
+    withType<KotlinCompile> {
+        kotlinOptions {
+            jvmTarget = "17"
+        }
     }
 }
