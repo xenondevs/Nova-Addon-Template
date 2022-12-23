@@ -57,6 +57,7 @@ tasks {
         
         from(File(File(project.buildDir, "libs"), "${project.name}-${project.version}.jar"))
         into(System.getProperty("outDir")?.let(::File) ?: project.buildDir)
+        rename(String::capitalized)
     }
     withType<KotlinCompile> {
         kotlinOptions {
