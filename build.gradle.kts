@@ -4,7 +4,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 group = "com.example" // TODO: Change this to your group
 version = "1.0-SNAPSHOT" // TODO: Change this to your addon version
 
-val mojangMapped = System.getProperty("mojang-mapped") != null
+val mojangMapped = project.hasProperty("mojang-mapped") || System.getProperty("mojang-mapped") != null
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
@@ -56,7 +56,11 @@ tasks {
         dependsOn("addon", if (mojangMapped) "jar" else "remapObfToSpigot")
         
         from(File(File(project.buildDir, "libs"), "${project.name}-${project.version}.jar"))
-        into(System.getProperty("outDir")?.let(::File) ?: project.buildDir)
+        into(
+            (project.findProperty("outDir") as? String)?.let(::File)
+                ?: System.getProperty("outDir")?.let(::File)
+                ?: project.buildDir
+        )
         rename(String::capitalized)
     }
     withType<KotlinCompile> {
