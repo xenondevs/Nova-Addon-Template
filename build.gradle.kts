@@ -61,7 +61,7 @@ tasks {
                 ?: System.getProperty("outDir")?.let(::File)
                 ?: project.buildDir
         )
-        rename(String::capitalized)
+        rename { it.replace(project.name, addon.get().addonName.get()) }
     }
     withType<KotlinCompile> {
         kotlinOptions {
