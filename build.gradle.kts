@@ -8,9 +8,9 @@ val mojangMapped = project.hasProperty("mojang-mapped") || System.getProperty("m
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    kotlin("jvm") version "1.7.21"
+    kotlin("jvm") version "1.8.20"
     id("xyz.xenondevs.specialsource-gradle-plugin") version "1.0.0"
-    id("xyz.xenondevs.string-remapper-gradle-plugin") version "1.0.0"
+    id("xyz.xenondevs.string-remapper-gradle-plugin") version "1.0"
     id("xyz.xenondevs.nova.nova-gradle-plugin") version libs.versions.nova
 }
 
@@ -45,9 +45,6 @@ spigotRemap {
 remapStrings {
     remapGoal.set(if (mojangMapped) "mojang" else "spigot")
     spigotVersion.set(libs.versions.spigot.get())
-    classes.set(listOf(
-        // Put your classes to string-remap here
-    ))
 }
 
 tasks {
