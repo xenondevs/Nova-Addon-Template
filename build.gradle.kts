@@ -4,14 +4,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 group = "com.example" // TODO: Change this to your group
 version = "1.0-SNAPSHOT" // TODO: Change this to your addon version
 
-val mojangMapped = project.hasProperty("mojang-mapped") || System.getProperty("mojang-mapped") != null
+val mojangMapped = project.hasProperty("mojang-mapped")
 
-@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    kotlin("jvm") version "1.8.20"
-    id("xyz.xenondevs.specialsource-gradle-plugin") version "1.0.0"
-    id("xyz.xenondevs.string-remapper-gradle-plugin") version "1.0"
-    id("xyz.xenondevs.nova.nova-gradle-plugin") version libs.versions.nova
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.nova)
+    alias(libs.plugins.stringremapper)
+    alias(libs.plugins.specialsource)
 }
 
 repositories {
@@ -22,7 +21,6 @@ repositories {
 
 dependencies {
     implementation(libs.nova)
-    implementation(variantOf(libs.spigot) { classifier("remapped-mojang") })
 }
 
 addon {
@@ -31,15 +29,12 @@ addon {
     version.set(project.version.toString())
     novaVersion.set(libs.versions.nova)
     main.set("com.example.ExampleAddon") // TODO: Change this to your main class
-    
-    // authors.add("ExampleAuthor") TODO: Set your list of authors
-    // spigotResourceId.set(12345) TODO: Set your spigot resource id
+    authors.add("ExampleAuthor") // TODO: Set your list of authors
 }
 
 spigotRemap {
     spigotVersion.set(libs.versions.spigot.get().substringBefore('-'))
     sourceJarTask.set(tasks.jar)
-    spigotJarClassifier.set("")
 }
 
 remapStrings {
@@ -52,14 +47,11 @@ tasks {
         group = "build"
         dependsOn("addon", if (mojangMapped) "jar" else "remapObfToSpigot")
         
-        from(File(File(project.buildDir, "libs"), "${project.name}-${project.version}.jar"))
-        into(
-            (project.findProperty("outDir") as? String)?.let(::File)
-                ?: System.getProperty("outDir")?.let(::File)
-                ?: project.buildDir
-        )
+        from(File(project.buildDir, "libs/${project.name}-${project.version}.jar"))
+        into((project.findProperty("outDir") as? String)?.let(::File) ?: project.buildDir)
         rename { it.replace(project.name, addon.get().addonName.get()) }
     }
+    
     withType<KotlinCompile> {
         kotlinOptions {
             jvmTarget = "17"

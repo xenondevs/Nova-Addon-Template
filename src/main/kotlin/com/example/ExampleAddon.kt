@@ -6,7 +6,6 @@ object ExampleAddon : Addon() {
     
     override fun init() {
         // Called when the addon is initialized.
-        // Register NovaMaterials, RecipeTypes, etc. here
     }
     
     override fun onEnable() {
