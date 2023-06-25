@@ -13,12 +13,6 @@ plugins {
     alias(libs.plugins.specialsource)
 }
 
-repositories {
-    mavenCentral()
-    maven("https://repo.xenondevs.xyz/releases")
-    mavenLocal { content { includeGroup("org.spigotmc") } }
-}
-
 dependencies {
     implementation(libs.nova)
 }

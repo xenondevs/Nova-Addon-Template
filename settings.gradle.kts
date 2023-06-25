@@ -1,26 +1,24 @@
 rootProject.name = "example" // TODO: Change this to your addon id
 
 dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        mavenLocal { content { includeGroup("org.spigotmc") } }
+        mavenCentral()
+        maven("https://libraries.minecraft.net")
+        maven("https://repo.xenondevs.xyz/releases")
+    }
     versionCatalogs {
         create("libs") {
-            version("nova", "0.14")
-            version("spigot", "1.20.1-R0.1-SNAPSHOT")
-            version("kotlin", "1.8.22")
-            
-            plugin("kotlin", "org.jetbrains.kotlin.jvm").versionRef("kotlin")
-            plugin("nova", "xyz.xenondevs.nova.nova-gradle-plugin").versionRef("nova")
-            plugin("stringremapper", "xyz.xenondevs.string-remapper-gradle-plugin").version("1.3")
-            plugin("specialsource", "xyz.xenondevs.specialsource-gradle-plugin").version("1.1")
-            
-            library("nova", "xyz.xenondevs.nova", "nova").versionRef("nova")
+            from("xyz.xenondevs.nova:catalog:0.14.1") // TODO: change this when updating to a newer Nova version
         }
     }
 }
 
 pluginManagement {
     repositories {
+        mavenLocal { content { includeGroup("org.spigotmc") } }
         mavenCentral()
         maven("https://repo.xenondevs.xyz/releases")
-        mavenLocal { content { includeGroup("org.spigotmc") } }
     }
 }
