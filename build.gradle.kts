@@ -8,12 +8,19 @@ val mojangMapped = project.hasProperty("mojang-mapped")
 
 plugins {
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.paperweight)
     alias(libs.plugins.nova)
     alias(libs.plugins.stringremapper)
-    alias(libs.plugins.specialsource)
+}
+
+repositories {
+    mavenCentral()
+    maven("https://papermc.io/repo/repository/maven-public/")
+    maven("https://repo.xenondevs.xyz/releases")
 }
 
 dependencies {
+    paperweight.paperDevBundle(libs.versions.paper)
     implementation(libs.nova)
 }
 
@@ -26,24 +33,25 @@ addon {
     authors.add("ExampleAuthor") // TODO: Set your list of authors
 }
 
-spigotRemap {
-    spigotVersion.set(libs.versions.spigot.get().substringBefore('-'))
-    sourceJarTask.set(tasks.jar)
-}
-
 remapStrings {
     remapGoal.set(if (mojangMapped) "mojang" else "spigot")
-    spigotVersion.set(libs.versions.spigot.get())
+    gameVersion.set(libs.versions.paper.get().substringBefore("-"))
 }
 
 tasks {
     register<Copy>("addonJar") {
         group = "build"
-        dependsOn("addon", if (mojangMapped) "jar" else "remapObfToSpigot")
+        if (mojangMapped) {
+            dependsOn("jar")
+            from(File(buildDir, "libs/${project.name}-${project.version}-dev.jar"))
+        } else {
+            dependsOn("reobfJar")
+            from(File(buildDir, "libs/${project.name}-${project.version}.jar"))
+        }
         
         from(File(project.buildDir, "libs/${project.name}-${project.version}.jar"))
         into((project.findProperty("outDir") as? String)?.let(::File) ?: project.buildDir)
-        rename { it.replace(project.name, addon.get().addonName.get()) }
+        rename { "${addonMetadata.get().addonName.get()}-${project.version}.jar" }
     }
     
     withType<KotlinCompile> {
