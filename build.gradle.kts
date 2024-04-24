@@ -10,7 +10,6 @@ plugins {
     alias(libs.plugins.kotlin)
     alias(libs.plugins.paperweight)
     alias(libs.plugins.nova)
-    alias(libs.plugins.stringremapper)
 }
 
 repositories {
@@ -31,11 +30,6 @@ addon {
     novaVersion.set(libs.versions.nova)
     main.set("com.example.ExampleAddon") // TODO: Change this to your main class
     authors.add("ExampleAuthor") // TODO: Set your list of authors
-}
-
-remapStrings {
-    remapGoal.set(if (mojangMapped) "mojang" else "spigot")
-    gameVersion.set(libs.versions.paper.get().substringBefore("-"))
 }
 
 tasks {
