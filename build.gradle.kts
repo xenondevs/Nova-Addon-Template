@@ -1,6 +1,3 @@
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
-
 group = "com.example" // TODO: Change this to your group
 version = "1.0-SNAPSHOT" // TODO: Change this to your addon version
 
@@ -22,28 +19,14 @@ dependencies {
 }
 
 addon {
-    id = project.name
     name = project.name.replaceFirstChar(Char::uppercase)
     version = project.version.toString()
-    novaVersion = libs.versions.nova
     main = "com.example.ExampleAddon" // TODO: Change this to your main class
-    authors = listOf("ExampleAuthor") // TODO: Set your list of authors
-}
-
-tasks {
-    register<Copy>("addonJar") {
-        group = "build"
-        dependsOn("jar")
-        from(File(project.layout.buildDirectory.get().asFile, "libs/${project.name}-${project.version}.jar"))
-        into((project.findProperty("outDir") as? String)?.let(::File) ?: project.layout.buildDirectory.get().asFile)
-        rename { "${addonMetadata.get().addonName.get()}-${project.version}.jar" }
-    }
     
-    withType<KotlinCompile> {
-        compilerOptions { 
-            jvmTarget = JvmTarget.JVM_21
-        }
-    }
+    // output directory for the generated addon jar is read from the "outDir" project property (-PoutDir="...")
+    val outDir = project.findProperty("outDir")
+    if (outDir is String)
+        destination.set(File(outDir))
 }
 
 afterEvaluate {
