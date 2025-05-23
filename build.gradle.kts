@@ -28,9 +28,3 @@ addon {
     if (outDir is String)
         destination.set(File(outDir))
 }
-
-afterEvaluate {
-    tasks.getByName<Jar>("jar") {
-        archiveClassifier = ""
-    }
-}
