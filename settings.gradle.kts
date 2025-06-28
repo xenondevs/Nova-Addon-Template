@@ -8,7 +8,7 @@ dependencyResolutionManagement {
     }
     versionCatalogs {
         create("libs") {
-            from("xyz.xenondevs.nova:catalog:0.19-alpha.8") // TODO: change this when updating to a newer Nova version
+            from("xyz.xenondevs.nova:catalog:0.20-alpha.1") // TODO: change this when updating to a newer Nova version
         }
     }
 }
