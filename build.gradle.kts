@@ -13,7 +13,6 @@ repositories {
 }
 
 dependencies {
-    compileOnly(origami.patchedPaperServer())
     implementation(libs.nova)
 }
 
