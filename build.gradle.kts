@@ -26,3 +26,9 @@ addon {
     if (outDir is String)
         destination = File(outDir)
 }
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(25))
+    }
+}
