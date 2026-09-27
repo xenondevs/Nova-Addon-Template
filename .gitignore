@@ -29,6 +29,9 @@ target/
 .gradle/
 build/
 
+# Agent reference repositories
+/.references/
+
 # Logs
 logs/
 *.log
